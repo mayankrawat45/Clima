@@ -1,6 +1,21 @@
+let country;
 
-async function getweather() {
-    let response=await fetch("https://api.openweathermap.org/data/2.5/weather?q=Lucknow&units=metric&appid=372def02d20b2017339dcb0832b6cb0c")
+
+let input=document.querySelector("input")
+input.addEventListener("change",(e)=>{
+    country=e.target.value;
+})
+let searchbtn=document.getElementById("search-btn")
+searchbtn.addEventListener("click",()=>{
+    getweather(country)
+    country=null;
+})
+
+
+
+
+async function getweather(city) {
+    let response=await fetch(`https://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&appid=372def02d20b2017339dcb0832b6cb0c`)
     let data=await response.json();
     console.log(data)
     document.getElementById("broad").innerHTML=`
