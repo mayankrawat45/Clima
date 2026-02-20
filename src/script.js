@@ -1,24 +1,49 @@
 let country;
 
 
-let input=document.querySelector("input")
-input.addEventListener("change",(e)=>{
-    country=e.target.value;
+let input = document.querySelector("input")
+input.addEventListener("change", (e) => {
+    country = e.target.value;
 })
-let searchbtn=document.getElementById("search-btn")
-searchbtn.addEventListener("click",()=>{
+let searchbtn = document.getElementById("search-btn")
+searchbtn.addEventListener("click", () => {
     getweather(country)
-    country=null;
+    country = null;
 })
 
 
+let currentLocation = document.getElementById("curr-location");
+currentLocation.addEventListener("click", async () => {
+    navigator.geolocation.getCurrentPosition((pos) => {
+        getDataUsingLatLon(pos.coords.latitude,pos.coords.longitude)
+    });
+    
+})
 
+async function getDataUsingLatLon(lat,lon){
+    try {
+        let response = await fetch(`https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&units=metric&appid=372def02d20b2017339dcb0832b6cb0c`)
+        let data = await response.json();
+        console.log(data)
+        renderweather(data)
+    } catch (error) {
+        console.log(error)
+    }
+}
 
 async function getweather(city) {
-    let response=await fetch(`https://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&appid=372def02d20b2017339dcb0832b6cb0c`)
-    let data=await response.json();
+    try {
+        let response = await fetch(`https://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&appid=372def02d20b2017339dcb0832b6cb0c`)
+        let data = await response.json();
+        renderweather(data)
+    } catch (error) {
+        console.log(error)
+    }
+}
+
+function renderweather(data) {
     console.log(data)
-    document.getElementById("broad").innerHTML=`
+    document.getElementById("broad").innerHTML = `
     <div class="flex justify-between">
             <div class="flex flex-col">
                 <span class="text-2xl font-medium">${data.name},${data.sys.country}</span>
@@ -38,5 +63,3 @@ async function getweather(city) {
         </div>
     `
 }
-
-getweather()
