@@ -82,6 +82,49 @@ function renderweather(data) {
             </div>
         </div>
     `
+    broadcast5(data.name)
 }
 
+async function broadcast5(city) {
 
+    let response=await fetch(`https://api.openweathermap.org/data/2.5/forecast?q=${city}&units=metric&appid=372def02d20b2017339dcb0832b6cb0c`)
+    let data=await response.json();
+    let warr=data.list;
+    console.log(warr)
+
+    document.getElementById("5d-broad").innerHTML = `
+    <h4 class="font-medium text-xl">5-day forcast</h4>
+        <div class="flex  mt-6 gap-5 broadcast p-10 rounded-xl">
+            <div class="border border-gray-400 rounded-xl p-3 ">
+                <p class="text-[16px] font-medium">${(warr[1].dt_txt).split(" ")[0]}</p>
+                <img class="w-16 mt-3" src="https://openweathermap.org/img/wn/${warr[1].weather[0].icon}@2x.png" alt="">
+                <p class="text-xs text-gray-400">clear sky</p>
+                <p class="font-semibold">${warr[1].main.temp}&deg;C</p>
+            </div>
+            <div class="border border-gray-400 rounded-xl p-3 ">
+                <p class="text-[16px] font-medium">${(warr[9].dt_txt).split(" ")[0]}</p>
+                <img class="w-16 mt-3" src="https://openweathermap.org/img/wn/${warr[9].weather[0].icon}@2x.png" alt="">
+                <p class="text-xs text-gray-400">clear sky</p>
+                <p class="font-semibold">${warr[9].main.temp}&deg;C</p>
+            </div>
+            <div class="border border-gray-400 rounded-xl p-3 ">
+                <p class="text-[16px] font-medium">${(warr[17].dt_txt).split(" ")[0]}</p>
+                <img class="w-16 mt-3" src="https://openweathermap.org/img/wn/${warr[17].weather[0].icon}@2x.png" alt="">
+                <p class="text-xs text-gray-400">clear sky</p>
+                <p class="font-semibold">${warr[17].main.temp}&deg;C</p>
+            </div>
+            <div class="border border-gray-400 rounded-xl p-3 ">
+                <p class="text-[16px] font-medium">${(warr[25].dt_txt).split(" ")[0]}</p>
+                <img class="w-16 mt-3" src="https://openweathermap.org/img/wn/${warr[25].weather[0].icon}@2x.png" alt="">
+                <p class="text-xs text-gray-400">clear sky</p>
+                <p class="font-semibold">${warr[25].main.temp}&deg;C</p>
+            </div>
+            <div class="border border-gray-400 rounded-xl p-3 ">
+                <p class="text-[16px] font-medium">${(warr[33].dt_txt).split(" ")[0]}</p>
+                <img class="w-16 mt-3" src="https://openweathermap.org/img/wn/${warr[33].weather[0].icon}@2x.png" alt="">
+                <p class="text-xs text-gray-400">clear sky</p>
+                <p class="font-semibold">${warr[33].main.temp}&deg;C</p>
+            </div>
+        </div>
+    `
+}
