@@ -1,0 +1,8 @@
+<svg width="64" height="64" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Sun -->
+  <circle cx="24" cy="24" r="10" fill="#FDB813"/>
+  
+  <!-- Cloud -->
+  <path d="M22 42H46C51 42 54 39 54 35C54 31 51 28 47 28C46 22 42 18 36 18C31 18 27 21 26 26C22 26 18 29 18 34C18 39 20 42 22 42Z"
+        fill="#E0E0E0"/>
+</svg>
