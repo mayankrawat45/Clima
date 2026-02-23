@@ -18,8 +18,9 @@
         <div class="flex items-center">
             <h2 class="font-medium text-2xl">clima</h2>
         </div>
-        <div class="flex gap-3 items-center">
+        <div class="flex gap-3 items-center relative">
             <input class="border text-sm rounded-lg px-2 py-2 focus:outline-1 border-[#e0e0e0]" type="text" placeholder="Search for city...">
+            <div class="hidden w-54 previous-Search absolute top-[90%] left-[0%]">this is prev</div>
             <button id="search-btn" class="text-sm font-semibold py-2 px-3 border border-gray-300 rounded-xl hover:bg-gray-200 cursor-pointer ">Search</button>
             <button id="Temp-btn" class="text-sm font-semibold py-2 px-3 border border-gray-300 rounded-xl hover:bg-gray-200 cursor-pointer ">&deg;F</button>
             <img id="curr-location" class="bg-white py-2 px-3 w-11 rounded-lg invert hover:invert-0 hover:bg-gray-200 border border-gray-400 cursor-pointer " src="../assets/icons/location.svg" alt="">

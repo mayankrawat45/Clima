@@ -1,14 +1,37 @@
 let city;
 let toggleTempUnit = true;
 let temperatureUnit = "metric";
+let SearchedResult;
+let Searchedcities;
 
 let input = document.querySelector("input")
 input.addEventListener("change", (e) => {
     city = e.target.value;
 })
+
+input.addEventListener("click",()=>{
+    let prevSearch=document.querySelector(".previous-Search");
+    prevSearch.classList.toggle("hidden")
+    SearchedResult=JSON.parse(localStorage.getItem("sHistory")) || [];
+    prevSearch.innerHTML=SearchedResult.map((item)=>{
+        return `
+            <p class="Searchedcity w-full p-2 border-b cursor-pointer bg-gray-200">${item}</p>
+        `
+    }).join("")
+    Searchedcities=document.querySelectorAll(".Searchedcity");
+    Searchedcities.forEach((item)=>{
+    item.addEventListener("click",()=>{
+        getweather(item.textContent)
+    })
+})
+})
+
+
 let searchbtn = document.getElementById("search-btn")
 searchbtn.addEventListener("click", () => {
     getweather(city)
+    SearchedResult.push(city)
+    localStorage.setItem("sHistory",JSON.stringify(SearchedResult))
     input.value = ""
 })
 
