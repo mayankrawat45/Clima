@@ -105,17 +105,17 @@ function renderweather(data) {
         year: "numeric"
     })
     document.getElementById("broad").innerHTML = `
-    <div class="flex justify-between">
+    <div class="md:flex justify-between">
             <div class="flex flex-col">
                 <span class="text-2xl font-medium">${data.name}, ${data.sys.country}</span>
                 <span >${data.weather[0].main}</span>
                 <span class="text-gray-500 text-sm">${data.weather[0].description}</span>
             </div>
             <div>
-                <section class="text-gray-400 text-[14px] px-3 py-1 border border-gray-400 rounded-xl">${DateString}</section>
+                <section class="text-gray-400 text-[14px] md:px-3 py-1 md:border border-gray-400 rounded-xl">${DateString}</section>
             </div>
         </div>
-        <div class="mt-4 flex justify-between items-center"> 
+        <div class="mt-4 md:flex justify-between items-center"> 
             <div>
                 <p class="text-6xl font-light">${Math.round(data.main.temp)}&deg;${toggleTempUnit ? "C" : "F"}</p>
                 <p class="text-gray-600 text-sm">Feels like ${Math.round(data.main.feels_like)}&deg;${toggleTempUnit ? "C" : "F"}</p>
@@ -137,7 +137,7 @@ async function broadcast5(city) {
 
     document.getElementById("5d-broad").innerHTML = `
     <h4 class="font-medium text-xl">5-day forcast</h4>
-        <div class="flex  mt-6 gap-5 broadcast p-10 rounded-xl">
+        <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5  mt-6 gap-5 broadcast p-10 rounded-xl">
             <div class="border border-gray-400 rounded-xl p-3 ">
                 <p class="text-[16px] font-medium">${(warr[1].dt_txt).split(" ")[0]}</p>
                 <img class="w-16 mt-3" src="https://openweathermap.org/img/wn/${warr[1].weather[0].icon}@2x.png" alt="">
