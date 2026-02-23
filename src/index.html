@@ -20,7 +20,7 @@
         </div>
         <div class="flex gap-3 items-center relative">
             <input class="border text-sm rounded-lg px-2 py-2 focus:outline-1 border-[#e0e0e0]" type="text" placeholder="Search for city...">
-            <div class="hidden w-54 previous-Search absolute top-[90%] left-[0%]">this is prev</div>
+            <div class="hidden w-54 previous-Search absolute top-[90%] left-[0%]"></div>
             <button id="search-btn" class="text-sm font-semibold py-2 px-3 border border-gray-300 rounded-xl hover:bg-gray-200 cursor-pointer ">Search</button>
             <button id="Temp-btn" class="text-sm font-semibold py-2 px-3 border border-gray-300 rounded-xl hover:bg-gray-200 cursor-pointer ">&deg;F</button>
             <img id="curr-location" class="bg-white py-2 px-3 w-11 rounded-lg invert hover:invert-0 hover:bg-gray-200 border border-gray-400 cursor-pointer " src="../assets/icons/location.svg" alt="">
@@ -28,9 +28,28 @@
         </div>
       </nav>
       <div id="broad" class="broadcast my-8 px-8 py-9 rounded-lg">
-        
+        <div class="flex justify-between">
+            <div class="flex flex-col">
+                <span class="text-2xl font-medium">--</span>
+                <span >-</span>
+                <span class="text-gray-500 text-sm">--</span>
+            </div>
+            <div>
+                <section class="text-gray-400 text-[14px] px-3 py-1 border border-gray-400 rounded-xl">MM DD YY</section>
+            </div>
+        </div>
+        <div class="mt-4 flex justify-between items-center"> 
+            <div>
+                <p class="text-6xl font-light">--&deg;</p>
+                <p class="text-gray-600 text-sm">Feels like....</p>
+            </div>
+            <div class="w-22">
+                <img class="clouds" src="https://openweathermap.org/img/wn/${data.weather[0].icon}@2x.png" alt="">
+            </div>
+        </div>
       </div>
       <div id="5d-broad" class="broadcast my-8 px-8 py-9 rounded-lg">   
+        <h4 class="font-medium text-xl">5-day forcast</h4>
         
       </div>
     </div>

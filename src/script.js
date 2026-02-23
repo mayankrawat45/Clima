@@ -9,7 +9,8 @@ input.addEventListener("input", (e) => {
     city = e.target.value;
 })
 
-input.addEventListener("click", () => {
+input.addEventListener("click", (e) => {
+    e.stopPropagation()
     let prevSearch = document.querySelector(".previous-Search");
     prevSearch.classList.toggle("hidden")
     SearchedResult = JSON.parse(localStorage.getItem("sHistory")) || [];
@@ -25,6 +26,10 @@ input.addEventListener("click", () => {
         })
     })
 })
+
+document.addEventListener("click", () => {
+    document.querySelector(".previous-Search").classList.add("hidden");
+});
 
 
 let searchbtn = document.getElementById("search-btn")
@@ -88,6 +93,9 @@ async function getweather(city) {
 }
 
 function renderweather(data) {
+    if(data.main.temp>40){
+        showerrors("Extreme Heat Alert Temperature above 40°C Stay hydrated and indoors Extreme Heat Alert")
+    }
     const timestamp = data.dt * 1000;
     const date = new Date(timestamp);
     const DateString = date.toLocaleDateString("en-US", {
@@ -96,7 +104,6 @@ function renderweather(data) {
         day: "numeric",
         year: "numeric"
     })
-    console.log()
     document.getElementById("broad").innerHTML = `
     <div class="flex justify-between">
             <div class="flex flex-col">
