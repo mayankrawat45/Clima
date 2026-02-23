@@ -5,33 +5,42 @@ let SearchedResult;
 let Searchedcities;
 
 let input = document.querySelector("input")
-input.addEventListener("change", (e) => {
+input.addEventListener("input", (e) => {
     city = e.target.value;
 })
 
-input.addEventListener("click",()=>{
-    let prevSearch=document.querySelector(".previous-Search");
+input.addEventListener("click", () => {
+    let prevSearch = document.querySelector(".previous-Search");
     prevSearch.classList.toggle("hidden")
-    SearchedResult=JSON.parse(localStorage.getItem("sHistory")) || [];
-    prevSearch.innerHTML=SearchedResult.map((item)=>{
+    SearchedResult = JSON.parse(localStorage.getItem("sHistory")) || [];
+    prevSearch.innerHTML = SearchedResult.map((item) => {
         return `
-            <p class="Searchedcity w-full p-2 border-b cursor-pointer bg-gray-200">${item}</p>
+            <p class="Searchedcity w-full p-2  cursor-pointer bg-[#f8f6f6]">${item}</p>
         `
     }).join("")
-    Searchedcities=document.querySelectorAll(".Searchedcity");
-    Searchedcities.forEach((item)=>{
-    item.addEventListener("click",()=>{
-        getweather(item.textContent)
+    Searchedcities = document.querySelectorAll(".Searchedcity");
+    Searchedcities.forEach((item) => {
+        item.addEventListener("click", () => {
+            getweather(item.textContent)
+        })
     })
-})
 })
 
 
 let searchbtn = document.getElementById("search-btn")
 searchbtn.addEventListener("click", () => {
+    if (!city || city.trimEnd() === "") {
+        showerrors("Please Enter city name cautiously")
+        return 
+    }
     getweather(city)
-    SearchedResult.push(city)
-    localStorage.setItem("sHistory",JSON.stringify(SearchedResult))
+    if(SearchedResult.length>4){
+        SearchedResult.shift()
+    }
+    if (!SearchedResult.includes(city)) {
+        SearchedResult.push(city)
+    }
+    localStorage.setItem("sHistory", JSON.stringify(SearchedResult))
     input.value = ""
 })
 
@@ -67,14 +76,18 @@ async function getweather(city) {
     try {
         let response = await fetch(`https://api.openweathermap.org/data/2.5/weather?q=${city}&units=${temperatureUnit}&appid=372def02d20b2017339dcb0832b6cb0c`)
         let data = await response.json();
+        if (data.cod !== 200) {
+            showerrors(data.message || "City not found");
+            return;
+        }
         renderweather(data)
     } catch (error) {
         console.log(error)
+        showerrors(error.message)
     }
 }
 
 function renderweather(data) {
-    console.log(data)
     const timestamp = data.dt * 1000;
     const date = new Date(timestamp);
     const DateString = date.toLocaleDateString("en-US", {
@@ -110,9 +123,9 @@ function renderweather(data) {
 
 async function broadcast5(city) {
 
-    let response=await fetch(`https://api.openweathermap.org/data/2.5/forecast?q=${city}&units=metric&appid=372def02d20b2017339dcb0832b6cb0c`)
-    let data=await response.json();
-    let warr=data.list;
+    let response = await fetch(`https://api.openweathermap.org/data/2.5/forecast?q=${city}&units=metric&appid=372def02d20b2017339dcb0832b6cb0c`)
+    let data = await response.json();
+    let warr = data.list;
     console.log(warr)
 
     document.getElementById("5d-broad").innerHTML = `
@@ -150,4 +163,15 @@ async function broadcast5(city) {
             </div>
         </div>
     `
+}
+
+
+function showerrors(error){
+    let div=document.createElement("div")
+    div.classList.add("alert", "fixed" ,"top-[5%]","right-1")
+    div.innerHTML=`<span class="border border-red-300 shadow-xl rounded-sm text-white p-2 bg-[#fa1919]">${error}</span>`
+    document.body.appendChild(div)
+    setTimeout(() => {
+        div.remove();
+    }, 1200);
 }
