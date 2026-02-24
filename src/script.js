@@ -93,8 +93,12 @@ async function getweather(city) {
 }
 
 function renderweather(data) {
-    if(data.main.temp>40){
+    console.log(data)
+    if(data.main.temp>40 && temperatureUnit==="metric"){
         showerrors("Extreme Heat Alert Temperature above 40°C Stay hydrated and indoors Extreme Heat Alert")
+    }
+    if(data.weather[0].main==="Rain"){
+        document.querySelector("#broad").style.backgroundImage="url('https://t3.ftcdn.net/jpg/16/46/54/34/360_F_1646543424_YOgoClunCLSrAuluQbgj43zBaFnKplF2.jpg')"
     }
     const timestamp = data.dt * 1000;
     const date = new Date(timestamp);
@@ -142,31 +146,86 @@ async function broadcast5(city) {
                 <p class="text-[16px] font-medium">${(warr[1].dt_txt).split(" ")[0]}</p>
                 <img class="w-16 mt-3" src="https://openweathermap.org/img/wn/${warr[1].weather[0].icon}@2x.png" alt="">
                 <p class="text-xs text-gray-400">clear sky</p>
+                <div class="flex gap-2">
                 <p class="font-semibold">${warr[1].main.temp}&deg;C</p>
+                <img class="w-5" src="../assets/icons/temp.svg" />
+                </div>
+                <div class="flex gap-2">
+                <p class="font-semibold">${warr[1].main.humidity}</p>
+                <img class="w-5" src="../assets/icons/humidity.svg" />
+                </div>
+                <div class="flex gap-2">
+                <p class="font-semibold">${warr[1].wind.speed}</p>
+                <img class="w-5" src="../assets/icons/wind.svg" />
+                </div>
             </div>
             <div class="border border-gray-400 rounded-xl p-3 ">
                 <p class="text-[16px] font-medium">${(warr[9].dt_txt).split(" ")[0]}</p>
                 <img class="w-16 mt-3" src="https://openweathermap.org/img/wn/${warr[9].weather[0].icon}@2x.png" alt="">
                 <p class="text-xs text-gray-400">clear sky</p>
+                <div class="flex gap-2">
                 <p class="font-semibold">${warr[9].main.temp}&deg;C</p>
+                <img class="w-5" src="../assets/icons/temp.svg" />
+                </div>
+                <div class="flex gap-2">
+                <p class="font-semibold">${warr[9].main.humidity}</p>
+                <img class="w-5" src="../assets/icons/humidity.svg" />
+                </div>
+                <div class="flex gap-2">
+                <p class="font-semibold">${warr[1].wind.speed}</p>
+                <img class="w-5" src="../assets/icons/wind.svg" />
+                </div>
             </div>
             <div class="border border-gray-400 rounded-xl p-3 ">
                 <p class="text-[16px] font-medium">${(warr[17].dt_txt).split(" ")[0]}</p>
                 <img class="w-16 mt-3" src="https://openweathermap.org/img/wn/${warr[17].weather[0].icon}@2x.png" alt="">
                 <p class="text-xs text-gray-400">clear sky</p>
+                <div class="flex gap-2">
                 <p class="font-semibold">${warr[17].main.temp}&deg;C</p>
+                <img class="w-5" src="../assets/icons/temp.svg" />
+                </div>
+                <div class="flex gap-2">
+                <p class="font-semibold">${warr[17].main.humidity}</p>
+                <img class="w-5" src="../assets/icons/humidity.svg" />
+                </div>
+                <div class="flex gap-2">
+                <p class="font-semibold">${warr[1].wind.speed}</p>
+                <img class="w-5" src="../assets/icons/wind.svg" />
+                </div>
             </div>
             <div class="border border-gray-400 rounded-xl p-3 ">
                 <p class="text-[16px] font-medium">${(warr[25].dt_txt).split(" ")[0]}</p>
                 <img class="w-16 mt-3" src="https://openweathermap.org/img/wn/${warr[25].weather[0].icon}@2x.png" alt="">
                 <p class="text-xs text-gray-400">clear sky</p>
+                <div class="flex gap-2">
                 <p class="font-semibold">${warr[25].main.temp}&deg;C</p>
+                <img class="w-5" src="../assets/icons/temp.svg" />
+                </div>
+                <div class="flex gap-2">
+                <p class="font-semibold">${warr[25].main.humidity}</p>
+                <img class="w-5" src="../assets/icons/humidity.svg" />
+                </div>
+                <div class="flex gap-2">
+                <p class="font-semibold">${warr[1].wind.speed}</p>
+                <img class="w-5" src="../assets/icons/wind.svg" />
+                </div>
             </div>
             <div class="border border-gray-400 rounded-xl p-3 ">
                 <p class="text-[16px] font-medium">${(warr[33].dt_txt).split(" ")[0]}</p>
                 <img class="w-16 mt-3" src="https://openweathermap.org/img/wn/${warr[33].weather[0].icon}@2x.png" alt="">
                 <p class="text-xs text-gray-400">clear sky</p>
+                <div class="flex gap-2">
                 <p class="font-semibold">${warr[33].main.temp}&deg;C</p>
+                <img class="w-5" src="../assets/icons/temp.svg" />
+                </div>
+                <div class="flex gap-2">
+                <p class="font-semibold">${warr[33].main.humidity}</p>
+                <img class="w-5" src="../assets/icons/humidity.svg" />
+                </div>
+                <div class="flex gap-2">
+                <p class="font-semibold">${warr[1].wind.speed}</p>
+                <img class="w-5" src="../assets/icons/wind.svg" />
+                </div>
             </div>
         </div>
     `

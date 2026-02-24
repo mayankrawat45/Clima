@@ -16,15 +16,15 @@
     <div class="container rounded w-6xl mx-auto px-10 py-10">
       <nav class="flex flex-col gap-3.5 md:flex-row md:items-center md:justify-between">
         <div class="flex items-center">
-            <h2 class="font-medium text-2xl">clima</h2>
+            <h2 class="font-medium text-4xl md:text-2xl">clima</h2>
         </div>
         <div class="flex gap-3 items-center relative">
-            <input class="border text-sm rounded-lg px-2 py-2 focus:outline-1 border-[#e0e0e0]" type="text" placeholder="Search for city...">
+            <input class="border text-sm rounded-lg p-4 md:px-2 md:py-2 focus:outline-1 border-[#e0e0e0]" type="text" placeholder="Search for city...">
             <div class="hidden w-54 previous-Search absolute top-[90%] left-[0%]"></div>
-            <button id="search-btn" class="text-sm font-semibold py-2 px-3 border border-gray-300 rounded-xl hover:bg-gray-200 cursor-pointer ">Search</button>
-            <button id="Temp-btn" class="text-sm font-semibold py-2 px-3 border border-gray-300 rounded-xl hover:bg-gray-200 cursor-pointer ">&deg;F</button>
-            <img id="curr-location" class="bg-white py-2 px-3 w-11 rounded-lg invert hover:invert-0 hover:bg-gray-200 border border-gray-400 cursor-pointer " src="../assets/icons/location.svg" alt="">
-            <a href="https://github.com/mayankrawat45/Clima" target="_blank"><img class="border border-gray-400 px-3 py-2 w-11 rounded-lg hover:bg-gray-200 cursor-pointer " src="../assets/icons/github.svg" alt=""></a>
+            <button id="search-btn" class="text-sm font-semibold p-4 md:py-2 md:px-3 border border-gray-300 rounded-xl hover:bg-gray-200 cursor-pointer ">Search</button>
+            <button id="Temp-btn" class="text-sm font-semibold p-4 md:py-2 md:px-3 border border-gray-300 rounded-xl hover:bg-gray-200 cursor-pointer ">&deg;F</button>
+            <img id="curr-location" class="bg-white p-2 md:py-2 md:px-3 w-13 md:w-11 rounded-lg invert hover:invert-0 hover:bg-gray-200 border border-gray-400 cursor-pointer " src="../assets/icons/location.svg" alt="">
+            <a href="https://github.com/mayankrawat45/Clima" target="_blank"><img class="border border-gray-400 p-2 md:px-3 md:py-2 w-13 md:w-11 rounded-lg hover:bg-gray-200 cursor-pointer " src="../assets/icons/github.svg" alt=""></a>
         </div>
       </nav>
       <div id="broad" class="broadcast my-8 px-8 py-9 rounded-lg">
@@ -41,7 +41,7 @@
         <div class="mt-4 flex justify-between items-center"> 
             <div>
                 <p class="text-6xl font-light">--&deg;</p>
-                <p class="text-gray-600 text-sm">Feels like....</p>
+                <p class="text-gray-600 md:text-sm">Feels like....</p>
             </div>
             <div class="w-22">
                 <img class="clouds" src="https://openweathermap.org/img/wn/${data.weather[0].icon}@2x.png" alt="">
@@ -49,7 +49,7 @@
         </div>
       </div>
       <div id="5d-broad" class="broadcast my-8 px-8 py-9 rounded-lg">   
-        <h4 class="font-medium text-xl">5-day forcast</h4>
+        <h4 class="font-medium text-4xl md:text-xl">5-day forcast</h4>
         
       </div>
     </div>
