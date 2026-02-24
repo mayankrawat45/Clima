@@ -74,6 +74,7 @@ async function getDataUsingLatLon(lat, lon) {
         renderweather(data)
     } catch (error) {
         console.log(error)
+        showerrors(error.message)
     }
 }
 
@@ -93,7 +94,6 @@ async function getweather(city) {
 }
 
 function renderweather(data) {
-    console.log(data)
     if(data.main.temp>40 && temperatureUnit==="metric"){
         showerrors("Extreme Heat Alert Temperature above 40°C Stay hydrated and indoors Extreme Heat Alert")
     }
@@ -137,7 +137,6 @@ async function broadcast5(city) {
     let response = await fetch(`https://api.openweathermap.org/data/2.5/forecast?q=${city}&units=metric&appid=372def02d20b2017339dcb0832b6cb0c`)
     let data = await response.json();
     let warr = data.list;
-    console.log(warr)
 
     document.getElementById("5d-broad").innerHTML = `
     <h4 class="font-medium text-xl">5-day forcast</h4>
